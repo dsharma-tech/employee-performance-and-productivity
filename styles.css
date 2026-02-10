@@ -1,0 +1,536 @@
+/* ============================================
+   Employee Performance & Productivity
+   Modern Professional Dashboard — Full UI
+   ============================================ */
+
+:root {
+  /* Palette — refined slate/blue professional */
+  --bg: #f8fafc;
+  --bg-elevated: #ffffff;
+  --bg-muted: #f1f5f9;
+  --card: #ffffff;
+  --card-hover: #fafbfc;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-muted: rgba(37, 99, 235, 0.08);
+  --accent: #0ea5e9;
+  --accent-alt: #6366f1;
+  --success: #059669;
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --radius: 10px;
+  --radius-sm: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.04);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --transition: 0.2s ease;
+}
+
+/* ---------- Base & App — page height = content only, no blank space below footer ---------- */
+html, body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  background: var(--bg) !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+  min-height: auto !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.stApp {
+  background: var(--bg) !important;
+  font-family: var(--font) !important;
+  padding-top: 0 !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+.stApp > div {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+div[data-testid="stAppViewContainer"] {
+  overflow-x: hidden !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+div[data-testid="stAppViewContainer"] > div {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+body .stApp,
+body .stApp > div,
+body .stApp div[data-testid="stAppViewContainer"],
+div[data-testid="stAppViewContainer"],
+div[data-testid="stAppViewContainer"] > div,
+section.main,
+div[class*="block-container"],
+div[class*="blockContainer"] {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+div[data-testid="stAppViewContainer"] > div { padding-top: 0 !important; margin-top: 0 !important; }
+div[data-testid="stHorizontalBlock"] { padding-top: 0 !important; margin-top: 0 !important; }
+
+.main {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  font-size: 15px !important;
+  color: var(--text) !important;
+  line-height: 1.6 !important;
+}
+section.main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  overflow-x: hidden !important;
+  min-height: auto !important;
+}
+
+/* Main content container — page ends at footer, zero space below */
+.main .block-container {
+  max-width: 1280px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 0 !important;
+  padding: 0 32px 0 32px !important;
+  background: var(--card) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: var(--shadow-md) !important;
+  border: 1px solid var(--border-light) !important;
+  overflow-x: hidden !important;
+}
+
+div[data-testid="stAppViewContainer"] > div > div:last-child { padding-top: 0 !important; margin-top: 0 !important; padding-bottom: 0 !important; margin-bottom: 0 !important; }
+.main .block-container > div:first-child { margin-top: 0 !important; padding-top: 0 !important; }
+.main .block-container { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+section.main { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+.main .block-container [data-testid="stVerticalBlock"] > div:last-child { margin-bottom: 0 !important; padding-bottom: 0 !important; }
+/* Prevent app containers from extending below content — no blank space below footer */
+.stApp, .stApp > div, div[data-testid="stAppViewContainer"], div[data-testid="stAppViewContainer"] > div {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+/* Override any Streamlit-injected min-height so page ends at footer */
+.main .block-container,
+.block-container [data-testid="stVerticalBlock"] {
+  min-height: 0 !important;
+}
+
+/* ---------- Typography ---------- */
+h1 {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.5rem !important;
+}
+h2 {
+  font-size: 1.375rem !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  letter-spacing: -0.02em !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 0.75rem !important;
+  padding-bottom: 0.5rem !important;
+}
+h3 { font-size: 1.125rem !important; font-weight: 600 !important; color: var(--text) !important; letter-spacing: -0.01em !important; }
+.stSubheader { color: var(--text) !important; font-size: 1.125rem !important; font-weight: 600 !important; }
+p { color: var(--text-secondary) !important; }
+hr { border: none !important; border-top: 1px solid var(--border-light) !important; margin: 1.5rem 0 !important; opacity: 0.8 !important; }
+
+/* ---------- Premium Navbar ---------- */
+.premium-nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 999 !important;
+  background: var(--card) !important;
+  border-bottom: 1px solid var(--border-light) !important;
+  box-shadow: var(--shadow-sm) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 64px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: var(--font) !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+.premium-nav-inner {
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  gap: 24px !important;
+  min-height: 64px !important;
+}
+.premium-nav-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  text-decoration: none !important;
+  color: var(--text) !important;
+  font-weight: 600 !important;
+  font-size: 1.0625rem !important;
+  letter-spacing: -0.02em !important;
+  flex-shrink: 0 !important;
+  transition: color var(--transition) !important;
+}
+.premium-nav-brand:hover { color: var(--primary) !important; }
+.premium-nav-logo {
+  width: 38px !important;
+  height: 38px !important;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-alt) 100%) !important;
+  border-radius: var(--radius-sm) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.15rem !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.22) !important;
+}
+.premium-nav-title { letter-spacing: -0.025em !important; }
+.premium-nav-links { display: flex !important; align-items: center !important; gap: 2px !important; flex-wrap: nowrap !important; }
+.premium-nav-link {
+  display: inline-block !important;
+  padding: 10px 18px !important;
+  text-decoration: none !important;
+  color: var(--text-muted) !important;
+  font-size: 0.9375rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  border: none !important;
+  background: transparent !important;
+  border-radius: var(--radius-sm) !important;
+  transition: color var(--transition), background var(--transition) !important;
+  -webkit-tap-highlight-color: transparent !important;
+  position: relative !important;
+}
+.premium-nav-link:hover { color: var(--text) !important; background: var(--bg-muted) !important; }
+.premium-nav-link-active {
+  color: var(--primary) !important;
+  font-weight: 600 !important;
+  background: transparent !important;
+}
+.premium-nav-link-active::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 18px !important;
+  right: 18px !important;
+  height: 2px !important;
+  background: var(--primary) !important;
+  border-radius: 1px !important;
+}
+.premium-nav-link-active:hover { color: var(--primary-hover) !important; }
+.premium-nav-spacer { height: 0 !important; margin: 0 !important; padding: 0 !important; flex-shrink: 0 !important; line-height: 0 !important; overflow: hidden !important; }
+.traditional-nav-spacer { height: 0 !important; margin: 0 !important; padding: 0 !important; flex-shrink: 0 !important; }
+/* Content starts flush under fixed nav: 64px = nav height, gap below nav = 0–5px */
+.main .block-container { padding-top: 64px !important; }
+/* Remove the light grey rounded bar (nav wrapper container) — hide its background */
+.main .block-container > div > div:first-child { margin: 0 !important; padding: 0 !important; min-height: 0 !important; background: transparent !important; border: none !important; box-shadow: none !important; border-radius: 0 !important; }
+.main .block-container .element-container:first-of-type { margin: 0 !important; padding: 0 !important; min-height: 0 !important; background: transparent !important; border: none !important; box-shadow: none !important; }
+.main .block-container [data-testid="stVerticalBlock"] { gap: 0 !important; row-gap: 0 !important; }
+.main .block-container [data-testid="stVerticalBlock"] > div:first-child { margin: 0 !important; padding: 0 !important; min-height: 0 !important; background: transparent !important; border: none !important; box-shadow: none !important; }
+.main .block-container [data-testid="stVerticalBlock"] > div:nth-child(2) { margin: 0 !important; margin-top: 0 !important; padding: 0 !important; min-height: 0 !important; }
+.main .block-container [data-testid="stVerticalBlock"] > div:nth-child(3) { margin: 0 !important; margin-top: 0 !important; padding: 0 !important; min-height: 0 !important; }
+.main .block-container [data-testid="stVerticalBlock"] > div:nth-child(4) { margin: 0 !important; margin-top: 0 !important; padding: 0 !important; min-height: 0 !important; }
+.main .block-container [data-testid="stVerticalBlock"] > div:nth-child(5) { margin-top: 0 !important; }
+/* Strip gap from html/iframe block (nav) and filter row; hide grey bar (iframe wrapper) */
+.main .block-container iframe { margin: 0 !important; display: block !important; vertical-align: top !important; background: transparent !important; }
+.main .block-container [data-testid="element-container"]:first-of-type > div { background: transparent !important; border: none !important; box-shadow: none !important; }
+.main .block-container [data-testid="element-container"] { margin-top: 0 !important; margin-bottom: 0 !important; }
+.main .block-container [data-testid="element-container"]:nth-of-type(1) { margin-bottom: 0 !important; }
+.main .block-container [data-testid="element-container"]:nth-of-type(2) { margin-top: 0 !important; margin-bottom: 0 !important; }
+.main .block-container [data-testid="element-container"]:nth-of-type(3) { margin-top: 0 !important; }
+.main .block-container [data-testid="stHorizontalBlock"]:first-of-type { margin-top: 0 !important; }
+
+/* Legacy traditional nav (minimal) */
+.traditional-nav { position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; z-index: 999 !important; background: var(--card) !important; border-bottom: 1px solid var(--border) !important; min-height: 52px !important; }
+.traditional-nav-inner, .traditional-nav-brand, .traditional-nav-links, .traditional-nav-link { font-family: var(--font) !important; }
+
+/* ---------- Filter bar — modern toolbar ---------- */
+.saas-filter-bar {
+  background: var(--bg-muted) !important;
+  border: 1px solid var(--border-light) !important;
+  border-radius: var(--radius) !important;
+  padding: 16px 20px !important;
+  margin: 0 0 24px 0 !important;
+  margin-top: 0 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+/* Tighten space above filter bar (right below nav) — 0–5px gap */
+.main .block-container .saas-filter-bar { margin-top: 0 !important; padding-top: 0 !important; }
+.main .block-container .saas-filter-bar + div { margin-top: 0 !important; }
+/* First horizontal block (filter row) — no top gap */
+.main .block-container [data-testid="stHorizontalBlock"] { margin-top: 0 !important; }
+.main .block-container [data-testid="stVerticalBlock"] [data-testid="stHorizontalBlock"]:first-child { margin-top: 0 !important; }
+.saas-filter-bar .stSelectbox label {
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  color: var(--text-secondary) !important;
+  letter-spacing: 0.01em !important;
+}
+.saas-filter-bar [data-baseweb="select"] > div {
+  border-radius: var(--radius-sm) !important;
+  border-color: var(--border) !important;
+  min-height: 40px !important;
+  transition: border-color var(--transition), box-shadow var(--transition) !important;
+}
+.saas-filter-bar [data-baseweb="select"] > div:hover { border-color: var(--primary) !important; }
+.saas-filter-bar [data-baseweb="select"] > div:focus-within { box-shadow: 0 0 0 2px var(--primary-muted) !important; border-color: var(--primary) !important; }
+
+/* ---------- Metrics / KPI cards ---------- */
+[data-testid="stMetric"] {
+  background: var(--card) !important;
+  padding: 20px 24px !important;
+  border-radius: var(--radius) !important;
+  border: 1px solid var(--border-light) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: box-shadow var(--transition), border-color var(--transition) !important;
+}
+[data-testid="stMetric"]:hover {
+  box-shadow: var(--shadow) !important;
+  border-color: var(--border) !important;
+}
+[data-testid="stMetricValue"] {
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+  font-size: 1.625rem !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+}
+[data-testid="stMetricLabel"] {
+  color: var(--text-muted) !important;
+  font-weight: 500 !important;
+  font-size: 0.8125rem !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+}
+
+/* ---------- Buttons (non-nav) ---------- */
+.stButton > button {
+  background: var(--primary) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 600 !important;
+  font-size: 0.9375rem !important;
+  padding: 10px 20px !important;
+  transition: background var(--transition), box-shadow var(--transition), transform 0.1s ease !important;
+}
+.stButton > button:hover {
+  background: var(--primary-hover) !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important;
+}
+.stButton > button:active { transform: scale(0.98) !important; }
+.stButton > button:focus, .stButton > button:focus-visible { outline: none !important; box-shadow: 0 0 0 2px var(--primary-muted) !important; }
+
+/* Nav row buttons (first row) — keep link-style */
+.main .block-container > div:first-child .stButton > button {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  border: none !important;
+  font-weight: 500 !important;
+  font-size: 0.9375rem !important;
+  padding: 10px 16px !important;
+  border-radius: var(--radius-sm) !important;
+}
+.main .block-container > div:first-child .stButton > button:hover { background: var(--bg-muted) !important; color: var(--primary) !important; }
+.main .block-container > div:first-child .stButton > button:active,
+.main .block-container > div:first-child .stButton > button:focus { transform: none !important; box-shadow: none !important; outline: none !important; }
+
+/* ---------- Inputs (select, number, text) ---------- */
+.stSelectbox > div > div,
+.stNumberInput > div > div,
+[data-baseweb="select"] > div {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--text) !important;
+  min-height: 40px !important;
+  transition: border-color var(--transition), box-shadow var(--transition) !important;
+}
+.stSelectbox > div > div:hover,
+.stNumberInput > div > div:hover,
+[data-baseweb="select"] > div:hover { border-color: var(--primary) !important; }
+[data-baseweb="select"] svg { fill: var(--primary) !important; }
+input, select, textarea {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  font-family: var(--font) !important;
+}
+
+/* ---------- Expanders ---------- */
+.streamlit-expanderHeader {
+  background: var(--bg-muted) !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--border-light) !important;
+  font-weight: 500 !important;
+  color: var(--text) !important;
+}
+[data-testid="stExpander"] {
+  border: 1px solid var(--border-light) !important;
+  border-radius: var(--radius) !important;
+  overflow: hidden !important;
+}
+
+/* ---------- Success / Info / Error ---------- */
+.stSuccess, .stInfo {
+  background: var(--primary-muted) !important;
+  border: 1px solid rgba(37, 99, 235, 0.15) !important;
+  border-left: 4px solid var(--primary) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--text) !important;
+  padding: 14px 18px !important;
+}
+.stError { border-radius: var(--radius-sm) !important; border-left: 4px solid #dc2626 !important; }
+
+/* ---------- DataFrames / Tables ---------- */
+.dataframe, div[data-testid="stDataFrame"] {
+  background: var(--card) !important;
+  border: 1px solid var(--border-light) !important;
+  border-radius: var(--radius) !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+.dataframe th, div[data-testid="stDataFrame"] th {
+  background: var(--primary) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 0.8125rem !important;
+  padding: 12px 16px !important;
+  border: none !important;
+}
+.dataframe td, div[data-testid="stDataFrame"] td {
+  color: var(--text) !important;
+  padding: 12px 16px !important;
+  border-color: var(--border-light) !important;
+  font-size: 0.875rem !important;
+}
+.dataframe tr:hover td, div[data-testid="stDataFrame"] tbody tr:hover td { background: var(--card-hover) !important; }
+
+/* ---------- Tabs (Streamlit tabs if used) ---------- */
+.stTabs [data-baseweb="tab-list"] {
+  background: var(--bg-muted) !important;
+  padding: 6px !important;
+  border-radius: var(--radius) !important;
+  gap: 4px !important;
+  border: 1px solid var(--border-light) !important;
+}
+.stTabs [data-baseweb="tab"] {
+  background: transparent !important;
+  color: var(--text-muted) !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 500 !important;
+}
+.stTabs [aria-selected="true"] {
+  background: var(--card) !important;
+  color: var(--primary) !important;
+  font-weight: 600 !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* ---------- Plotly chart containers ---------- */
+.js-plotly-plot, .plotly {
+  border-radius: var(--radius) !important;
+  overflow: hidden !important;
+}
+[data-testid="stVerticalBlock"] > div { margin-bottom: 12px !important; }
+[data-testid="stVerticalBlock"] > div:last-child { margin-bottom: 0 !important; }
+.element-container { margin-bottom: 18px !important; }
+.element-container:has(.footer-pro) { margin-bottom: 0 !important; margin-top: 0 !important; padding: 0 !important; }
+
+/* ---------- Scrollbar ---------- */
+* { scrollbar-width: thin !important; scrollbar-color: #94a3b8 var(--border-light) !important; }
+::-webkit-scrollbar { width: 8px !important; height: 8px !important; }
+::-webkit-scrollbar-track { background: var(--border-light) !important; border-radius: 4px !important; }
+::-webkit-scrollbar-thumb { background: #94a3b8 !important; border-radius: 4px !important; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary) !important; }
+
+/* ---------- Traditional professional footer — same as header, full width ---------- */
+.footer-pro {
+  margin: 0 -32px 0 -32px !important;
+  padding: 0.75rem 32px !important;
+  width: calc(100% + 64px) !important;
+  max-width: calc(100% + 64px) !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  font-family: var(--font) !important;
+  font-size: 0.8125rem !important;
+  color: var(--text-muted) !important;
+  border-top: 1px solid var(--border-light) !important;
+  background: var(--card) !important;
+  line-height: 1.4 !important;
+}
+.main .block-container .element-container:has(.footer-pro),
+.main .block-container div:has(> .footer-pro) {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+@media (max-width: 768px) {
+  .footer-pro { margin-left: -20px !important; width: calc(100% + 40px) !important; max-width: calc(100% + 40px) !important; padding-left: 20px !important; padding-right: 20px !important; }
+}
+
+/* ---------- Hide Streamlit chrome ---------- */
+#MainMenu { visibility: hidden !important; }
+footer:not(.footer-pro) { visibility: hidden !important; }
+header, [data-testid="stHeader"], [data-testid="stToolbar"] {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+/* ---------- Section divider (custom) ---------- */
+.section-divider { margin: 2rem 0 !important; border: none !important; border-top: 1px solid var(--border-light) !important; }
+
+/* ---------- Prediction form section headers ---------- */
+.form-section-header {
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+}
+.form-section-header:first-of-type { margin-top: 0 !important; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  .main .block-container { padding-left: 20px !important; padding-right: 20px !important; border-radius: var(--radius-lg) !important; }
+  .premium-nav-inner { padding: 0 20px !important; gap: 12px !important; }
+  .premium-nav-title { font-size: 0.9375rem !important; }
+  .premium-nav-link { padding: 8px 12px !important; font-size: 0.875rem !important; }
+  [data-testid="stMetric"] { padding: 16px !important; }
+  [data-testid="stMetricValue"] { font-size: 1.375rem !important; }
+}
